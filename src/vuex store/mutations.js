@@ -12,7 +12,8 @@ export default {
     state.todos[index].title = todo.title;
   },
 
-  deleteTodo(state, id) {
-    state.todos = state.todos.filter((todo) => todo.id !== id);
+  deleteTodo(state, todo) {
+    // since any posted todo will be having same id so better filter with title
+    state.todos = state.todos.filter((e) => e.title !== todo.title);
   },
 };

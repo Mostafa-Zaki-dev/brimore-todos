@@ -5,7 +5,7 @@ const { fetchTodos, addTodo, updateTodo, deleteTodo } = api;
 export default {
   async getTodos({ commit }) {
     const apiData = await fetchTodos();
-    const appConcernedData = apiData.filter((todo) => todo.userId === 11);
+    const appConcernedData = apiData.filter((todo) => todo.id <= 4);
     commit("getTodos", appConcernedData);
   },
 
@@ -19,8 +19,12 @@ export default {
     commit("updateTodo", data);
   },
 
-  async deleteTodo({ commit }, id) {
-    const data = await deleteTodo(id);
-    commit("deleteTodo", id);
+  async deleteTodo({ commit }, todo) {
+    try {
+      await deleteTodo(todo.id);
+    } catch (error) {
+      console.log(error.message);
+    }
+    commit("deleteTodo", todo);
   },
 };

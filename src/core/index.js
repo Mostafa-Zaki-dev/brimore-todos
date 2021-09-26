@@ -5,7 +5,6 @@ const url = "https://jsonplaceholder.typicode.com/todos";
 export default {
   async fetchTodos() {
     const { data } = await axios.get(url);
-    console.log("fetchTodos data: ", data);
     return data;
   },
   async addTodo(todo) {
@@ -15,7 +14,6 @@ export default {
   },
   async updateTodo(id, todo) {
     const { data } = await axios.put(`${url}/${id}`, todo);
-    console.log(data);
     // return new todo body with id
     return data;
   },
