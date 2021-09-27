@@ -14,7 +14,7 @@ app.use(store);
 app.use(Form);
 app.use(Button);
 
-//Registering Icons
+// Registering Icons
 library.add(faCheckSquare, faTrashAlt, faEdit);
 app.component("fai", FontAwesomeIcon);
 

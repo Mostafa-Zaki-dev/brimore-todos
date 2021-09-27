@@ -1,5 +1,4 @@
 <template>
-  
   <a-form @submit.prevent="handleSubmit" class='todo-form'>
     <a-form-item >
       <input :class="update ? 'todo-input edit': 'todo-input'"
