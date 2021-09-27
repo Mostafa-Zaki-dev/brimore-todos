@@ -14,6 +14,12 @@ export default {
 
   deleteTodo(state, todo) {
     // since any added todo will be having same id=201, so better filter with title
-    state.todos = state.todos.filter((e) => e.title !== todo.title);
+    state.todos = state.todos.filter((e) => {
+      const condition = e.id !== todo.id;
+      if (!condition) {
+        return e.title !== todo.title;
+      }
+      return condition;
+    });
   },
 };

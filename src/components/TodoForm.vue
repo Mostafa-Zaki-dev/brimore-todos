@@ -13,6 +13,9 @@
       <p class= 'error'  v-if='err'> {{err}}</p>
     </a-form-item>
   </a-form>
+  <a-button v-if="update" @click="cancel" class="cancel-button">
+    cancel
+  </a-button>
 </template>
 
 <script>
@@ -20,13 +23,14 @@ import { ref } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
-  props:['update', 'updateTodo'],
-  setup({update, updateTodo}) {
+  props:['update', 'updateTodo', 'cancel'],
+  setup({update, updateTodo,}) {
     const title = ref('');
     const err = ref('');
     const store = useStore();
 
    function handleSubmit(){
+     err.value = '';
      const todo = {
         title: title.value,
         userId: 1,

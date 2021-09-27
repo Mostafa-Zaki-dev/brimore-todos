@@ -34,7 +34,7 @@ h1 {
 }
 
 .todo-input::placeholder {
-  color: #cfb9b9;
+  color: #724e4e;
   font-weight: 100;
   text-shadow: #9b5252;
 }
@@ -67,7 +67,19 @@ h1 {
 .todo-button.edit {
   background: linear-gradient(90deg, rgba(20, 159, 255, 1) 0%, rgba(17, 122, 255, 1) 100%);
   border-color: purple;
-  padding: 15px 15px;
+  padding: 16px 22px;
+  margin-top: 40px;
+}
+
+.cancel-button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(90deg, rgb(175, 160, 206) 0%, rgb(63, 126, 38) 100%);
+  color: #fff;
+  text-transform: capitalize;
 }
 
 .error {

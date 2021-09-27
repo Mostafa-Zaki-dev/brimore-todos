@@ -1,6 +1,6 @@
 <template>
     <div v-if="update.id">
-      <TodoForm :update="update" :updateTodo="updateTodo"/>
+      <TodoForm :update="update" :updateTodo="updateTodo" :cancel="cancel"/>
     </div>
     <div v-else  v-for="todo in todos" :key='todo.id' :class="todo.completed ? 'todo-row complete' : 'todo-row'" >
       <div>
@@ -59,6 +59,10 @@ export default {
       update.value= '';
     };
 
+    function cancel(){
+      update.value= '';
+    };
+
     return {
       todos : computed(() => store.getters.getTodos),
       deleteTodo,
@@ -66,6 +70,7 @@ export default {
       updateIcon,
       update,
       updateTodo, 
+      cancel,
     };
 
   }
