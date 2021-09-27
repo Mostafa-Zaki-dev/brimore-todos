@@ -1,12 +1,23 @@
 <template>
-  <div v-for="todo in todos" :key='todo.id' :class="todo.completed ? 'todo-row complete' : 'todo-row'" >
-    <div>
-      {{todo.title}}
+    <div v-for="todo in todos" :key='todo.id' :class="todo.completed ? 'todo-row complete' : 'todo-row'" >
+      <div>
+        {{todo.title}}
+        <fai icon="edit" class="edit-icon"/>
+      </div>
+      <div class="icons">
+        <fai icon="check-square"  
+        :class="todo.completed ? 'check-icon-complete' : 'check-icon'"
+        @click="completeTodo(todo)"
+        />
+
+        <fai icon="trash-alt" 
+        @click="deleteTodo(todo)"
+        class="delete-icon"
+         />
+      </div>
     </div>
-    <div class="icons">
-      <a-button @click="deleteTodo(todo)" class="delete-icon">X</a-button>
-    </div>
-  </div>
+
+
 
 </template>
 
@@ -25,13 +36,18 @@ export default {
     });
 
     function deleteTodo(todo){
-      // console.log('todo: ', todo);
       store.dispatch('deleteTodo', todo );
+    };
+    
+    function completeTodo(todo){
+      const updated = {...todo, completed : !todo.completed}
+      store.dispatch('updateTodo', updated)
     };
     
     return {
       todos : computed(() => store.getters.getTodos),
       deleteTodo,
+      completeTodo,
     };
 
   }

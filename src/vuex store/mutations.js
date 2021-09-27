@@ -9,11 +9,11 @@ export default {
 
   updateTodo(state, todo) {
     const index = state.todos.findIndex((e) => e.id === todo.id);
-    state.todos[index].title = todo.title;
+    state.todos[index] = todo;
   },
 
   deleteTodo(state, todo) {
-    // since any posted todo will be having same id so better filter with title
+    // since any added todo will be having same id=201, so better filter with title
     state.todos = state.todos.filter((e) => e.title !== todo.title);
   },
 };

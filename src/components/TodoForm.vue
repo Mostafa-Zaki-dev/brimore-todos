@@ -22,19 +22,8 @@ export default {
     const title = ref('');
     const err = ref('');
     const store = useStore();
-    // const todo = {
-    //   title: title.value,
-    //   userId: 11,
-    //   completed: false,
-    // };
-
-    // function addTodo(){
-    //   console.log('todo: ', todo)
-      
-    // };
 
    function handleSubmit(){
-     console.log('title : ',title.value)
      const todo = {
         title: title.value,
         userId: 1,
