@@ -1,8 +1,11 @@
 <template>
-    <div v-for="todo in todos" :key='todo.id' :class="todo.completed ? 'todo-row complete' : 'todo-row'" >
+    <div v-if="update.id">
+      <TodoForm :update="update" :updateTodo="updateTodo"/>
+    </div>
+    <div v-else  v-for="todo in todos" :key='todo.id' :class="todo.completed ? 'todo-row complete' : 'todo-row'" >
       <div>
         {{todo.title}}
-        <fai icon="edit" class="edit-icon"/>
+        <fai icon="edit" class="edit-icon" @click="updateIcon(todo)"/>
       </div>
       <div class="icons">
         <fai icon="check-square"  
@@ -17,20 +20,23 @@
       </div>
     </div>
 
-
-
 </template>
 
 <script>
-import { computed,onMounted } from 'vue'
+import { computed,onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
+import TodoForm from './TodoForm.vue'
 
 
 export default {
-
+  components:{
+    TodoForm,
+  },
   setup(){
 
     const store = useStore();
+    const update = ref({});
+
     onMounted(()=> {
       store.dispatch('getTodos');
     });
@@ -44,10 +50,22 @@ export default {
       store.dispatch('updateTodo', updated)
     };
     
+    function updateIcon(todo){
+      update.value = {...todo};
+    };
+
+    function updateTodo(todo){
+      store.dispatch('updateTodo', todo);
+      update.value= '';
+    };
+
     return {
       todos : computed(() => store.getters.getTodos),
       deleteTodo,
       completeTodo,
+      updateIcon,
+      update,
+      updateTodo, 
     };
 
   }

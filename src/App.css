@@ -49,6 +49,10 @@ h1 {
   color: #fff;
 }
 
+.todo-input.edit {
+  border: 2px solid #149fff;
+}
+
 .todo-button {
   padding: 16px;
   border: none;
@@ -120,7 +124,7 @@ h1 {
 .edit-icon {
   color: yellow;
   margin-left: 8px;
-  cursor: alias;
+  cursor: pointer;
 }
 
 .complete {
